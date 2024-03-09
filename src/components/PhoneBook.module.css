@@ -1,0 +1,68 @@
+.container {
+  max-width: 400px;
+  margin: 70px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  margin-bottom: 5px;
+}
+
+.input {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.title {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.hero {
+  font-size: 40px;
+  text-align: center;
+}
+
+.label_search {
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+
+.search {
+  padding: 8px;
+  margin-bottom: 10px;
+}
+
+.contacts_list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact_item {
+  margin-bottom: 5px;
+}
+
+.contact_item button {
+  margin-left: 10px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
