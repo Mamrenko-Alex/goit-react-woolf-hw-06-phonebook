@@ -24,7 +24,11 @@ export const App = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.hero}>Phonebook</h1>
-      <ContactForm addContact={(name, number) => dispatch(addContact({ id: nanoid(), name, number }))} />
+      <ContactForm
+        addContact={(name, number) =>
+          dispatch(addContact({ id: nanoid(), name, number }))
+        }
+      />
       <h2 className={styles.title}>Contacts</h2>
       <SearchFilter value={filter} onChange={handleChange} />
       {!contacts.length ? (

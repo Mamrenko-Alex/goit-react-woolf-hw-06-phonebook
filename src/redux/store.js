@@ -14,7 +14,9 @@ const contactsSlice = createSlice({
       state.contacts.push(action.payload);
     },
     deleteContact: (state, action) => {
-      state.contacts = state.contacts.filter(contact => contact.id !== action.payload);
+      state.contacts = state.contacts.filter(
+        contact => contact.id !== action.payload
+      );
     },
     setFilter: (state, action) => {
       state.filter = action.payload;
@@ -33,10 +35,11 @@ const persistedReducer = persistReducer(
 export const { addContact, deleteContact, setFilter } = contactsSlice.actions;
 
 export const store = configureStore({
-    reducer: persistedReducer,
-      middleware: (getDefaultMiddleware) => getDefaultMiddleware({
-    serializableCheck: false,
-  }),
+  reducer: persistedReducer,
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export const persistor = persistStore(store);
