@@ -1,53 +1,20 @@
 import { nanoid } from 'nanoid';
-import { useEffect, useState } from 'react';
 import styles from './PhoneBook.module.css';
 import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
 import { SearchFilter } from './SearchFilter';
 import { Notification } from './Notification/Notification';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact, deleteContact, setFilter } from '../redux/store';
 
 export const App = () => {
-  const [contacts, setContacts] = useState(() => {
-    const savedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (savedContacts) {
-      return savedContacts;
-    }
-    return [];
-  });
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts);
+  const filter = useSelector(state => state.filter);
 
   const handleChange = event => {
     const { value } = event.target;
-    setFilter(value);
-  };
-
-  const addContact = (name, number) => {
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    if (
-      contacts.find(
-        ({ name }) =>
-          name.toLocaleLowerCase() === newContact.name.toLocaleLowerCase()
-      )
-    ) {
-      alert(`${newContact.name} is already in contacts`);
-      return;
-    }
-    setContacts(prevContacts => [...prevContacts, newContact]);
-    setFilter('');
-  };
-
-  const deleteContact = deleteId => {
-    setContacts(prevContacts =>
-      prevContacts.filter(({ id }) => id !== deleteId)
-    );
+    dispatch(setFilter(value));
   };
 
   const filteredContacts = contacts.filter(({ name }) =>
@@ -57,7 +24,7 @@ export const App = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.hero}>Phonebook</h1>
-      <ContactForm addContact={addContact} />
+      <ContactForm addContact={(name, number) => dispatch(addContact({ id: nanoid(), name, number }))} />
       <h2 className={styles.title}>Contacts</h2>
       <SearchFilter value={filter} onChange={handleChange} />
       {!contacts.length ? (
@@ -65,7 +32,7 @@ export const App = () => {
       ) : (
         <ContactList
           contacts={filteredContacts}
-          onDeleteContact={deleteContact}
+          onDeleteContact={id => dispatch(deleteContact(id))}
         />
       )}
     </div>
