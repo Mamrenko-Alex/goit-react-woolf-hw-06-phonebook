@@ -13,11 +13,11 @@ export const App = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.hero}>Phonebook</h1>
-      <ContactForm/>
+      <ContactForm />
       <h2 className={styles.title}>Contacts</h2>
-      <SearchFilter value={'filter'}/>
+      <SearchFilter />
       {!contacts.length ? (
-        <Notification message="You don't have any contacts yet"></Notification>
+        <Notification>You don't have any contacts yet</Notification>
       ) : (
         <ContactList />
       )}

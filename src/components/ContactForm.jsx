@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { getAvailableContacts } from '../redux/selector';
 
 export const ContactForm = () => {
-
   const [fields, setFields] = useState({ name: '', number: '' });
   const { name, number } = fields;
   const contacts = useSelector(getAvailableContacts);
@@ -24,8 +23,8 @@ export const ContactForm = () => {
     );
 
     if (isInContacts) {
-      alert('A contact with the same name already exists')
-      return
+      alert('A contact with the same name already exists');
+      return;
     }
 
     dispatch(addContact({ name, number }));

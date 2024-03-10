@@ -7,16 +7,15 @@ const persistedReducer = persistReducer(
   {
     key: 'root',
     storage,
-    whitelist:['contacts']
+    whitelist: ['contacts'],
   },
   contactsReducer
 );
-console.log(storage);
 
 export const store = configureStore({
   reducer: {
     contacts: persistedReducer,
-    filter: filterReducer
+    filter: filterReducer,
   },
 
   middleware: getDefaultMiddleware =>

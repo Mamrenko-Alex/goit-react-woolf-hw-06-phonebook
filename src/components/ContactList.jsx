@@ -7,7 +7,7 @@ export const ContactList = () => {
   const contacts = useSelector(getAvailableContacts);
   const dispatch = useDispatch();
 
-  const handleDeleteContact = (id) => {
+  const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
 

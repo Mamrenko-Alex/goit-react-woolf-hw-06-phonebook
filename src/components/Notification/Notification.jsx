@@ -1,5 +1,5 @@
 import styles from './Notification.module.css';
 
-export const Notification = ({ message }) => {
-  return <p className={styles.notification}>{message}</p>;
+export const Notification = ({ children }) => {
+  return <p className={styles.notification}>{children}</p>;
 };

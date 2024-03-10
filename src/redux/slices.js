@@ -1,5 +1,5 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { nanoid } from "nanoid";
+import { createSlice } from '@reduxjs/toolkit';
+import { nanoid } from 'nanoid';
 
 export const filterSlice = createSlice({
   name: 'filter',
@@ -12,7 +12,7 @@ export const filterSlice = createSlice({
     },
   },
 });
-    
+
 const contactsSlice = createSlice({
   name: 'contacts',
   initialState: {
