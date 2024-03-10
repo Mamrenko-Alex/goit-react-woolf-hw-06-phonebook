@@ -1,9 +1,15 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from '../redux/slices';
 import styles from './PhoneBook.module.css';
 import { useState } from 'react';
+import { getAvailableContacts } from '../redux/selector';
 
-export const ContactForm = ({ addContact }) => {
+export const ContactForm = () => {
+
   const [fields, setFields] = useState({ name: '', number: '' });
   const { name, number } = fields;
+  const contacts = useSelector(getAvailableContacts);
+  const dispatch = useDispatch();
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -12,7 +18,17 @@ export const ContactForm = ({ addContact }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    addContact(name, number);
+
+    const isInContacts = contacts.some(
+      contact => contact.name.toLowerCase().trim() === name.toLowerCase().trim()
+    );
+
+    if (isInContacts) {
+      alert('A contact with the same name already exists')
+      return
+    }
+
+    dispatch(addContact({ name, number }));
     setFields({ name: '', number: '' });
   };
 
